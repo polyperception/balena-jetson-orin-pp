@@ -1,4 +1,4 @@
-#  balena-jetson-orin repository
+# balena-jetson-orin repository
 
 ## Linux for Tegra (L4T) Support
 
@@ -24,27 +24,29 @@ To update a device to a draft release:
 `balena device os-update <device_uuid> --include-draft`
 
 The last L4T 35.5.0 - Jetpack 5-based production releases are:
-* v5.3.21+rev3
-* v5.3.21+rev2
-* v5.3.21+rev1
-* v5.3.21
+
+- v5.3.21+rev3
+- v5.3.21+rev2
+- v5.3.21+rev1
+- v5.3.21
 
 balenaOS production images for Jetson devices at versions greater than v6.0 are based on Jetpack 6.
 
 Given there is a major BSP upgrade from Jetpack 5 to Jetpack 6, prior to updating your devices to an L4T 36.3-based OS release, we recommend you to:
-* Always test any OS update using lab devices first, to ensure the upgrade path is suitable for your devices and that your container applications are in sync with the host OS
-* If your device has been originally provisioned on an L4T version older than 35.5.0, first update to the last two L4T 35.5.0-based releases. This implies updating first to v5.3.21+rev2, then to v5.3.21+rev3, as this ensures both bootchains are updated to L4T 35.5.0, as required by the Jetpack 6 BSP.
-* Avoid interrupting the update process by rebooting or by cutting power to the device
 
+- Always test any OS update using lab devices first, to ensure the upgrade path is suitable for your devices and that your container applications are in sync with the host OS
+- If your device has been originally provisioned on an L4T version older than 35.5.0, first update to the last two L4T 35.5.0-based releases. This implies updating first to v5.3.21+rev2, then to v5.3.21+rev3, as this ensures both bootchains are updated to L4T 35.5.0, as required by the Jetpack 6 BSP.
+- Avoid interrupting the update process by rebooting or by cutting power to the device
 
 ## Clone/Initialize the repository
 
 There are two ways of initializing this repository:
-* Clone this repository with "git clone --recursive".
+
+- Clone this repository with "git clone --recursive".
 
 or
 
-* Run "git clone" and then "git submodule update --init --recursive". This will bring in all the needed dependencies.
+- Run "git clone" and then "git submodule update --init --recursive". This will bring in all the needed dependencies.
 
 ## Build information
 
@@ -55,13 +57,13 @@ argument:
 
 ### Containerized build
 
-* If you have a working docker installation, you can build in a containerized
+- If you have a working docker installation, you can build in a containerized
   environment as follows:
-  `./balena-yocto-scripts/build/balena-build.sh -d <device type> -s <shared directory>`
+  `./balena-yocto-scripts/build/balena-build.sh -d <device type> -s <shared directory> -k`
 
   Where:
-    * Device type is one of the supported devices with a valid `<device type name>.coffee` description file.
-    * Shared directory is the absolute path to the build folder
+  - Device type is one of the supported devices with a valid `<device type name>.coffee` description file.
+  - Shared directory is the absolute path to the build folder
 
 ### Native build
 
@@ -70,29 +72,29 @@ distribution is [supported](https://docs.yoctoproject.org/singleindex.html#suppo
 
 Additional host tools need to be installed for native builds to work.
 
-* Run the barys build script:
+- Run the barys build script:
   `./balena-yocto-scripts/build/barys`
 
-* You can also run barys with the -h switch to inspect the available options
+- You can also run barys with the -h switch to inspect the available options
 
 ### Custom build using this repository
 
-* Run the barys build script in dry run mode to setup an empty `build` directory
-    `./balena-yocto-scripts/build/barys --remove-build --dry-run`
+- Run the barys build script in dry run mode to setup an empty `build` directory
+  `./balena-yocto-scripts/build/barys --remove-build --dry-run`
 
-* Edit the `local.conf` in the `build/conf` directory
+- Edit the `local.conf` in the `build/conf` directory
 
-* Prepare build's shell environment
-    `source layers/poky/oe-init-build-env`
+- Prepare build's shell environment
+  `source layers/poky/oe-init-build-env`
 
-* Run bitbake (see message outputted when you sourced above for examples)
+- Run bitbake (see message outputted when you sourced above for examples)
 
 ### Build flags
 
-* Consult layers/meta-balena/README.md for info on various build flags (setting
-up serial console support for example) and build prerequisites. Build flags can
-be set by using the build scripts (barys or balena-build) or by manually
-modifying `local.conf`.
+- Consult layers/meta-balena/README.md for info on various build flags (setting
+  up serial console support for example) and build prerequisites. Build flags can
+  be set by using the build scripts (barys or balena-build) or by manually
+  modifying `local.conf`.
 
 ## Contributing
 
@@ -105,6 +107,7 @@ For issues we use an aggregated github repository available [here](https://githu
 To contribute send github pull requests targeting this repository.
 
 Please refer to: [Yocto Contribution Guidelines](https://wiki.yoctoproject.org/wiki/Contribution_Guidelines#General_Information) and try to use the commit log format as stated there. Example:
+
 ```
 <component>: Short description
 
@@ -138,5 +141,6 @@ Changelog-entry: Update the meta-balena submodule from v2.19.0 to v2.24.0
 ```
 
 Make sure you mention the issue addressed by a PR. See:
-* https://help.github.com/articles/autolinked-references-and-urls/#issues-and-pull-requests
-* https://help.github.com/articles/closing-issues-via-commit-messages/#closing-an-issue-in-a-different-repository
+
+- https://help.github.com/articles/autolinked-references-and-urls/#issues-and-pull-requests
+- https://help.github.com/articles/closing-issues-via-commit-messages/#closing-an-issue-in-a-different-repository

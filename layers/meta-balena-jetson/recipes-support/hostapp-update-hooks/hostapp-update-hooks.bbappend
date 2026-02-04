@@ -52,3 +52,8 @@ HOSTAPP_HOOKS:append:forecr-dsb-ornx-lan-orin-nx-16gb = " \
     99-resin-uboot \
     99-resin-bootfiles-forecr-dsb-ornx-lan-orin-nx-16gb \
 "
+
+HOSTAPP_HOOKS:append:auvidea-x230d-agx-orin-64gb = " \
+    99-resin-uboot \
+    99-resin-bootfiles-auvidea-x230d-agx-orin-64gb \
+"

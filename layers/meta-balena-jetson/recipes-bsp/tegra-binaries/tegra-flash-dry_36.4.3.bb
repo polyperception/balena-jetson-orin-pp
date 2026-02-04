@@ -12,6 +12,7 @@ PN = "tegra-flash-dry"
 # SPI flash images dumped after flashing the bootloader from L4T
 BOOTBLOB:jetson-agx-orin-devkit = "boot0_agx_orin_devkit.img.gz"
 BOOTBLOB:jetson-agx-orin-devkit-64gb = "boot0_agx_orin_devkit_64.img.gz"
+BOOTBLOB:auvidea-x230d-agx-orin-64gb = "boot0_agx_orin_devkit_64.img.gz"
 BOOTBLOB:jetson-orin-nx-xavier-nx-devkit = "boot0_orin_nx_xavier_nx_devkit_super.img.gz"
 BOOTBLOB:jetson-orin-nano-devkit-nvme = "boot0_orin_nano_devkit_nvme_super.img.gz"
 BOOTBLOB:jetson-orin-nx-seeed-j4012 = "boot0_orin_nx_seed_j4012.img.gz"
@@ -28,6 +29,7 @@ PARTSPEC:jetson-orin-nano-devkit-nvme = "partition_specification234_orin_nano.tx
 PARTSPEC:jetson-orin-nx-seeed-j4012 = "partition_specification234_orin_nano.txt"
 PARTSPEC:jetson-orin-nano-seeed-j3010 = "partition_specification234_orin_nano.txt"
 PARTSPEC:jetson-agx-orin-devkit-64gb = "partition_specification234_orin_nano.txt"
+PARTSPEC:auvidea-x230d-agx-orin-64gb = "partition_specification234_orin_nano.txt"
 PARTSPEC:forecr-dsb-ornx-lan = "partition_specification234_orin_nano.txt"
 
 BINARY_INSTALL_PATH = "/opt/tegra-binaries/"

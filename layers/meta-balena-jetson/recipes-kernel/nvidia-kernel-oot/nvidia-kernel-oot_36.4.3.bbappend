@@ -30,6 +30,25 @@ do_deploy:append:forecr-dsb-ornx-orin-nano-8gb() {
         ${DEPLOYDIR}/devicetree/
 }
 
+SRC_URI:append:auvidea-x230d-agx-orin-64gb = " \
+    file://auvidea-x230d/tegra234-auvidea-X230+p3701-0005-nv.dtb \
+    file://auvidea-x230d/tegra234-auvidea-X230+p3701-0000-dynamic.dtbo \
+"
+
+do_install:append:auvidea-x230d-agx-orin-64gb() {
+    install -m 0644 \
+        ${WORKDIR}/auvidea-x230d/tegra234-auvidea-X230+p3701-0005-nv.dtb \
+        ${WORKDIR}/auvidea-x230d/tegra234-auvidea-X230+p3701-0000-dynamic.dtbo \
+        ${D}/boot/devicetree/
+}
+
+do_deploy:append:auvidea-x230d-agx-orin-64gb() {
+    install -m 0644 \
+        ${WORKDIR}/auvidea-x230d/tegra234-auvidea-X230+p3701-0005-nv.dtb \
+        ${WORKDIR}/auvidea-x230d/tegra234-auvidea-X230+p3701-0000-dynamic.dtbo \
+        ${DEPLOYDIR}/devicetree/
+}
+
 TEGRA_OOT_WIFI_DRIVERS:remove="${KERNEL_MODULE_PACKAGE_PREFIX}kernel-module-rtl8852ce"
 
 TEGRA_OOT_REPLACEMENT_DRIVERS += " lan743x "

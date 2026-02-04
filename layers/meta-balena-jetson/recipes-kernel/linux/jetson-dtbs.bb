@@ -5,7 +5,11 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 # In Jetpack 6.2 the nvidia-kernel-oot-dtb deploys all device-trees
-do_install[depends] += " nvidia-kernel-oot-dtb:do_deploy "
+# Auvidea X230D uses prebuilt DTBs, not ones from nvidia-kernel-oot-dtb
+python() {
+    if d.getVar('MACHINE') != 'auvidea-x230d-agx-orin-64gb':
+        d.appendVarFlag('do_install', 'depends', ' nvidia-kernel-oot-dtb:do_deploy ')
+}
 
 SRC_URI += " \
     file://tegra234-p3737-0000+p3701-0000-nv-spi.dtb \
@@ -30,6 +34,10 @@ SRC_URI:append:forecr-dsb-ornx-orin-nano-8gb = " \
     file://forecr-dsb-ornx-lan/tegra234-p3768-0000+p3767-0003-nv-super.dtb \
 "
 
+SRC_URI:append:auvidea-x230d-agx-orin-64gb = " \
+    file://auvidea-x230d/tegra234-auvidea-X230+p3701-0005-nv.dtb \
+"
+
 S = "${WORKDIR}"
 DTBNAME = "${@os.path.basename(d.getVar('KERNEL_DEVICETREE', True).split()[0])}"
 
@@ -48,6 +56,14 @@ do_install:forecr-dsb-ornx-orin-nano-8gb() {
 	install -d ${D}/boot/
 	install -m 0644 "${WORKDIR}/forecr-dsb-ornx-lan/${DTBNAME}" "${D}/boot/${DTBNAME}"
         install -m 0644 "${WORKDIR}/forecr-dsb-ornx-lan/tegra234-p3768-0000+p3767-0003-nv-super.dtb" "${D}/boot/tegra234-p3768-0000+p3767-0003-nv-super.dtb"
+}
+
+# Auvidea X230D carrier board comes with pre-built device trees.
+# DTBNAME comes from the the machine config
+# Note: The dynamic DTBO is installed by nvidia-kernel-oot-devicetrees
+do_install:auvidea-x230d-agx-orin-64gb() {
+	install -d ${D}/boot/
+	install -m 0644 "${WORKDIR}/auvidea-x230d/${DTBNAME}" "${D}/boot/${DTBNAME}"
 }
 
 do_install:append:jetson-orin-nano-devkit-nvme() {
@@ -103,6 +119,10 @@ FILES:${PN}:jetson-orin-nano-4g-devkit += " \
 
 FILES:${PN}:jetson-agx-orin-devkit-64gb += " \
 	/boot/tegra234-p3737-0000+p3701-0005-nv.dtb \
+"
+
+FILES:${PN}:auvidea-x230d-agx-orin-64gb += " \
+	/boot/tegra234-auvidea-X230+p3701-0005-nv.dtb \
 "
 
 FILES:${PN}:forecr-dsb-ornx-orin-nano-8gb += " \

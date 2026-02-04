@@ -15,6 +15,7 @@ device_specific_patches["jetson-orin-nx-xavier-nx-devkit"]="0001-Orin-NX-16GB-In
 device_specific_patches["jetson-orin-nx-seeed-j4012"]="$orin_nano_generic_patch"
 device_specific_patches["jetson-orin-nano-seeed-j3010"]="$orin_nano_generic_patch"
 device_specific_patches["jetson-agx-orin-devkit-64gb"]="0001-AGX-Orin-64GB-Integrate-with-balenaOS-on-L4T-36.4.patch"
+device_specific_patches["auvidea-x230d-agx-orin-64gb"]="0001-AGX-Orin-64GB-Integrate-with-balenaOS-on-L4T-36.4.patch"
 device_specific_patches["forecr-dsb-ornx-orin-nano-8gb"]="$orin_nano_generic_patch"
 
 edk2_patch="0001-edk2-Disable-network-boot-and-allow-UEFI-capsule-dow.patch"
@@ -22,7 +23,7 @@ edk2_nvidia_patches=( "0001-edk2-nvidia-Add-changes-for-balenaOS-integration.pat
 	"0001-edk2-nvidia-Remove-pva-fw-from-required-list.patch" \
 	"0001-StandaloneMmOptee-Don-t-assert-if-var-store-integrit.patch" )
 
-if [[ "${DEVICE_TYPE}" == "jetson-agx-orin-devkit-64gb" ]]; then
+if [[ "${DEVICE_TYPE}" == "jetson-agx-orin-devkit-64gb" ]] || [[ "${DEVICE_TYPE}" == "auvidea-x230d-agx-orin-64gb" ]]; then
     echo "Applying edk2-nvidia jetson-agx-orin-devkit-64gb NewDeviceHierarchy override patch"
     edk2_nvidia_patches+=("0001-TegraPlatformBootManager-TegraPlatformBootManagerDxe.patch")
 fi	
