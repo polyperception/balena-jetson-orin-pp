@@ -25,11 +25,11 @@ module.exports =
 	supportsBlink: false
 
 	yocto:
-		machine: 'auvidea-x230d-agx-orin-64gb'
+		machine: 'jetson-agx-orin-devkit-64gb'
 		image: 'balena-image-flasher'
 		fstype: 'balenaos-img'
 		version: 'yocto-scarthgap'
-		deployArtifact: 'balena-image-flasher-auvidea-x230d-agx-orin-64gb.balenaos-img'
+		deployArtifact: 'balena-image-flasher-jetson-agx-orin-devkit-64gb.balenaos-img'
 		compressed: true
 
 	options: [ networkOptions.group ]
