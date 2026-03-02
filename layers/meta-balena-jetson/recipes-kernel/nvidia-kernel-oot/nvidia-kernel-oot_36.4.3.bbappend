@@ -30,19 +30,19 @@ do_deploy:append:forecr-dsb-ornx-orin-nano-8gb() {
         ${DEPLOYDIR}/devicetree/
 }
 
-SRC_URI:append:auvidea-x230d-agx-orin-64gb = " \
+SRC_URI:append:jetson-agx-orin-devkit-64gb = " \
     file://auvidea-x230d/tegra234-auvidea-X230+p3701-0005-nv.dtb \
     file://auvidea-x230d/tegra234-auvidea-X230+p3701-0000-dynamic.dtbo \
 "
 
-do_install:append:auvidea-x230d-agx-orin-64gb() {
+do_install:append:jetson-agx-orin-devkit-64gb() {
     install -m 0644 \
         ${WORKDIR}/auvidea-x230d/tegra234-auvidea-X230+p3701-0005-nv.dtb \
         ${WORKDIR}/auvidea-x230d/tegra234-auvidea-X230+p3701-0000-dynamic.dtbo \
         ${D}/boot/devicetree/
 }
 
-do_deploy:append:auvidea-x230d-agx-orin-64gb() {
+do_deploy:append:jetson-agx-orin-devkit-64gb() {
     install -m 0644 \
         ${WORKDIR}/auvidea-x230d/tegra234-auvidea-X230+p3701-0005-nv.dtb \
         ${WORKDIR}/auvidea-x230d/tegra234-auvidea-X230+p3701-0000-dynamic.dtbo \
