@@ -34,3 +34,32 @@ TEGRA_OOT_WIFI_DRIVERS:remove="${KERNEL_MODULE_PACKAGE_PREFIX}kernel-module-rtl8
 
 TEGRA_OOT_REPLACEMENT_DRIVERS += " lan743x "
 
+SRC_URI:append:jetson-agx-orin-devkit-64gb = " \
+    file://avermedia-d315/tegra234-p3737-0000+p3701-0000-nv-d315.dtb \
+    file://avermedia-d315/tegra234-p3737-0000+p3701-0004-nv-d315.dtb \
+    file://avermedia-d315/tegra234-p3737-0000+p3701-0005-nv-d315.dtb \
+    file://avermedia-d315/tegra234-p3737-0000+p3701-0008-nv-d315.dtb \
+"
+
+# Install D315 DTBs into ${D}/boot/devicetree/ so they are sysroot-staged for
+# nvidia-kernel-oot-dtb:do_deploy (which validates KERNEL_DEVICETREE against
+# ${STAGING_DIR_HOST}/boot/devicetree/ before deploying).
+do_install:append:jetson-agx-orin-devkit-64gb() {
+    install -m 0644 \
+        ${WORKDIR}/avermedia-d315/tegra234-p3737-0000+p3701-0000-nv-d315.dtb \
+        ${WORKDIR}/avermedia-d315/tegra234-p3737-0000+p3701-0004-nv-d315.dtb \
+        ${WORKDIR}/avermedia-d315/tegra234-p3737-0000+p3701-0005-nv-d315.dtb \
+        ${WORKDIR}/avermedia-d315/tegra234-p3737-0000+p3701-0008-nv-d315.dtb \
+        ${D}/boot/devicetree/
+}
+
+# Deploying is not necessary for Balena images, but meta-tegra does it
+# so let's do it as well just for consistency.
+do_deploy:append:jetson-agx-orin-devkit-64gb() {
+    install -m 0644 \
+        ${WORKDIR}/avermedia-d315/tegra234-p3737-0000+p3701-0000-nv-d315.dtb \
+        ${WORKDIR}/avermedia-d315/tegra234-p3737-0000+p3701-0004-nv-d315.dtb \
+        ${WORKDIR}/avermedia-d315/tegra234-p3737-0000+p3701-0005-nv-d315.dtb \
+        ${WORKDIR}/avermedia-d315/tegra234-p3737-0000+p3701-0008-nv-d315.dtb \
+        ${DEPLOYDIR}/devicetree/
+}
