@@ -5,6 +5,12 @@ ARG DEFAULT_DTB
 
 ENV DEBIAN_FRONTEND noninteractive
 
+# setuptools >= 71 restructured pkg_resources, breaking edk2-pytool-extensions'
+# `import pkg_resources`. Pin setuptools system-wide so NVIDIA build scripts
+# (which run pip inside /build/nvidia-uefi/venv) cannot upgrade past this.
+RUN echo "setuptools<71" > /etc/pip-constraints.txt && \
+    pip3 config set global.constraint /etc/pip-constraints.txt
+
 RUN apt-get update && apt-get install -y git vim && \
     mkdir build && cd build && \
     edkrepo manifest-repos add nvidia https://github.com/NVIDIA/edk2-edkrepo-manifest.git main nvidia && \
